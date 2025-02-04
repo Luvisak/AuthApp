@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Bienvenido, @User.Identity.Name</h2>
+
+<form asp-action="Logout" asp-controller="Auth" method="post">
+    <button type="submit">Cerrar Sesión</button>
+</form>
