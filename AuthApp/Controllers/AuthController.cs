@@ -34,7 +34,6 @@ namespace AuthApp.Controllers
                     ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30)
                 };
 
-                // 🚀 Asegurar que la autenticación se realiza correctamente
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
 
                 return RedirectToAction("Dashboard", "Home");
