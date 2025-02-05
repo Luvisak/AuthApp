@@ -1,9 +1,22 @@
 ﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Dashboard";
 }
 
-<h2>Bienvenido, @User.Identity.Name</h2>
-
-<form asp-action="Logout" asp-controller="Auth" method="post">
-    <button type="submit">Cerrar Sesión</button>
-</form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="card mt-4 shadow">
+                <div class="card-body">
+                    <h3 class="mb-3">Bienvenido, @User.Identity.Name 👋</h3>
+                    <p class="text-muted">Accede a las funcionalidades de la plataforma desde este panel.</p>
+                    <form asp-action="Logout" asp-controller="Auth" method="post">
+                        <button class="btn btn-danger" type="submit">
+                            <i class="mdi mdi-logout"></i> Cerrar Sesión
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
