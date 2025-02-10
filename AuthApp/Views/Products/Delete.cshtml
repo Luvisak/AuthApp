@@ -1,0 +1,37 @@
+﻿@model AuthApp.Models.Product
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<h2>Eliminar Producto</h2>
+<hr />
+
+<h4>¿Estás seguro de que deseas eliminar este producto?</h4>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Price)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Price)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Category)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Category)
+    </dd>
+</dl>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

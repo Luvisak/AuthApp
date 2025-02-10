@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using AuthApp.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,12 @@ if (!keyDirectory.Exists)
 {
     keyDirectory.Create();
 }
+
+// 1. Obtener la cadena de conexión
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// 2. Registrar el repositorio (AddScoped crea una instancia por cada request)
+builder.Services.AddScoped(_ => new ProductRepository(connectionString));
 
 // Configurar protección de datos
 builder.Services.AddDataProtection()

@@ -1,0 +1,61 @@
+﻿@{
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Productos - Index";
+}
+
+<div>
+    <h1>Lista de Productos</h1>
+
+    <table id="productsTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Se cargará vía Ajax con Dapper -->
+        </tbody>
+    </table>
+
+    <a asp-action="Create" class="btn btn-primary mt-3">Crear nuevo producto</a>
+
+    @section Scripts {
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <!-- DataTables CSS (puedes moverlo al <head> de tu Layout si prefieres) -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+        <script>
+            $(document).ready(function () {
+                $('#productsTable').DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("GetProductsData", "Products")",
+                        "type": "GET",
+                        "dataType": "json"
+                    },
+                    "columns": [
+                        { "data": "id" },
+                        { "data": "name" },
+                        { "data": "price" },
+                        { "data": "category" },
+                        {
+                            "data": "id",
+                            "render": function (data) {
+                                return `
+                                    <a href="/Products/Edit/${data}" class="btn btn-sm btn-warning">Editar</a>
+                                    <a href="/Products/Delete/${data}" class="btn btn-sm btn-danger">Eliminar</a>
+                                `;
+                            }
+                        }
+                    ]
+                });
+            });
+        </script>
+    }
+</div>
